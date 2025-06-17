@@ -28,10 +28,13 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="previousPage()" [disabled]="offset === 0">Anterior</ion-button>
+      <ion-button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</ion-button>
     </ion-buttons>
+    <ion-title>
+      Página {{ currentPage }} de {{ totalPages }}
+    </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="nextPage()">Próxima</ion-button>
+      <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Próximo</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
