@@ -10,15 +10,16 @@ import {
   IonList, 
   IonItem, 
   IonAvatar, 
-  IonLabel 
-} from "@ionic/angular/standalone";
+  IonLabel, 
+  IonButtons, 
+  IonFooter, IonButton } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonButton, IonFooter, IonButtons, 
     CommonModule,
     IonHeader,
     IonToolbar,
@@ -27,18 +28,38 @@ import {
     IonList,
     IonItem,
     IonAvatar,
-    IonLabel,
+    IonLabel, 
+    IonButtons, 
+    IonFooter 
   ]
 })
 export class HomePage implements OnInit {
-  pokemons: any[] = [];
+  pokemons: any[] = [];  
+  offset = 0;
+  limit = 20;
 
   constructor(private pokeApi: PokeapiService, private router: Router) {}
 
   ngOnInit() {
-    this.pokeApi.getPokemons(20, 0).subscribe(response => {
+    this.loadPokemons();
+  }
+
+  loadPokemons() {
+    this.pokeApi.getPokemons(this.limit, this.offset).subscribe(response => {
       this.pokemons = response.results;
     });
+  }
+
+  nextPage() {
+    this.offset += this.limit;
+    this.loadPokemons();
+  }
+
+  previousPage() {
+    if (this.offset >= this.limit) {
+      this.offset -= this.limit;
+      this.loadPokemons();
+    }
   }
 
   openDetails(name: string) {
