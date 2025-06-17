@@ -25,3 +25,14 @@
 #container a {
   text-decoration: none;
 }
+
+
+ion-item {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+ion-item:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transform: translateX(5px);
+}

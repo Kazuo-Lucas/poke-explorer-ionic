@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
   }
 
   openDetails(name: string) {
-    this.router.navigate(['/details', name]);
+    this.router.navigate(['/detailsionic', name]);
   }
 
   getPokemonId(url: string): string {

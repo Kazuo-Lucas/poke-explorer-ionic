@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'detailsionic/:name',
+    loadComponent: () => import('./detailsionic/detailsionic.page').then( m => m.DetailsPage)
+  },
 ];
